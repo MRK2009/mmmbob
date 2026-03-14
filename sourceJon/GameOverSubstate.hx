@@ -7,6 +7,7 @@ import flixel.math.FlxPoint;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import lime.system.System;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
@@ -83,10 +84,14 @@ class GameOverSubstate extends MusicBeatSubstate
 					#else
 						FlxG.openURL(website[0]);
 					#end
-					Sys.exit(0);
+					System.exit(0);
 				}
 		}
-		
+
+		#if mobile
+		addVPad(NONE, A_B);
+		addVPadCamera(false);
+		#end
 	}
 	
 	override function update(elapsed:Float)
@@ -146,7 +151,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			{
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
+					FlxG.switchState(new PlayState());
 				});
 			});
 		}

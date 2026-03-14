@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import Controls.KeyboardScheme;
 import flixel.FlxG;
@@ -285,11 +286,11 @@ class Judgement extends Option
 		Conductor.recalculateTimings();
 
 		OptionsMenu.versionShit.text = "Current Safe Frames: " + Conductor.safeFrames + " - Description - " + description + 
-		" - SIK: " + OptionsMenu.truncateFloat(45 * Conductor.timeScale, 0) +
-		"ms GD: " + OptionsMenu.truncateFloat(90 * Conductor.timeScale, 0) +
-		"ms BD: " + OptionsMenu.truncateFloat(135 * Conductor.timeScale, 0) + 
-		"ms SHT: " + OptionsMenu.truncateFloat(155 * Conductor.timeScale, 0) +
-		"ms TOTAL: " + OptionsMenu.truncateFloat(Conductor.safeZoneOffset,0) + "ms";
+		" - SIK: " + FlxMath.roundDecimal(45 * Conductor.timeScale, 0) +
+		"ms GD: " + FlxMath.roundDecimal(90 * Conductor.timeScale, 0) +
+		"ms BD: " + FlxMath.roundDecimal(135 * Conductor.timeScale, 0) + 
+		"ms SHT: " + FlxMath.roundDecimal(155 * Conductor.timeScale, 0) +
+		"ms TOTAL: " + FlxMath.roundDecimal(Conductor.safeZoneOffset,0) + "ms";
 		return true;
 	}
 
@@ -304,11 +305,11 @@ class Judgement extends Option
 		Conductor.recalculateTimings();
 
 		OptionsMenu.versionShit.text = "Current Safe Frames: " + Conductor.safeFrames + " - Description - " + description + 
-		" - SIK: " + OptionsMenu.truncateFloat(45 * Conductor.timeScale, 0) +
-		"ms GD: " + OptionsMenu.truncateFloat(90 * Conductor.timeScale, 0) +
-		"ms BD: " + OptionsMenu.truncateFloat(135 * Conductor.timeScale, 0) + 
-		"ms SHT: " + OptionsMenu.truncateFloat(155 * Conductor.timeScale, 0) +
-		"ms TOTAL: " + OptionsMenu.truncateFloat(Conductor.safeZoneOffset,0) + "ms";
+		" - SIK: " + FlxMath.roundDecimal(45 * Conductor.timeScale, 0) +
+		"ms GD: " + FlxMath.roundDecimal(90 * Conductor.timeScale, 0) +
+		"ms BD: " + FlxMath.roundDecimal(135 * Conductor.timeScale, 0) + 
+		"ms SHT: " + FlxMath.roundDecimal(155 * Conductor.timeScale, 0) +
+		"ms TOTAL: " + FlxMath.roundDecimal(Conductor.safeZoneOffset,0) + "ms";
 		return true;
 	}
 }
@@ -324,7 +325,7 @@ class FPSOption extends Option
 	public override function press():Bool
 	{
 		FlxG.save.data.fps = !FlxG.save.data.fps;
-		(cast (Lib.current.getChildAt(0), Main)).toggleFPS(FlxG.save.data.fps);
+		cast(Lib.current.getChildAt(0), Main).toggleFPS(FlxG.save.data.fps);
 		display = updateDisplay();
 		return true;
 	}
@@ -358,7 +359,7 @@ class FPSCapOption extends Option
 		if (FlxG.save.data.fpsCap > 290)
 			return false;
 		FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
-		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+		cast(Lib.current.getChildAt(0), Main).setFPSCap(FlxG.save.data.fpsCap);
 
 		OptionsMenu.versionShit.text = "Current FPS Cap: " + FlxG.save.data.fpsCap + " - Description - " + description;
 
@@ -369,7 +370,7 @@ class FPSCapOption extends Option
 		if (FlxG.save.data.fpsCap < 60)
 			return false;
 		FlxG.save.data.fpsCap = FlxG.save.data.fpsCap - 10;
-		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+		cast(Lib.current.getChildAt(0), Main).setFPSCap(FlxG.save.data.fpsCap);
 
 		OptionsMenu.versionShit.text = "Current FPS Cap: " + FlxG.save.data.fpsCap + " - Description - " + description;
 
@@ -406,7 +407,7 @@ class ScrollSpeedOption extends Option
 		if (FlxG.save.data.scrollSpeed > 10)
 			FlxG.save.data.scrollSpeed = 10;
 
-		OptionsMenu.versionShit.text = "Current Scroll Speed: " + OptionsMenu.truncateFloat(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
+		OptionsMenu.versionShit.text = "Current Scroll Speed: " + FlxMath.roundDecimal(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
 		return true;
 	}
 
@@ -420,7 +421,7 @@ class ScrollSpeedOption extends Option
 			FlxG.save.data.scrollSpeed = 10;
 
 
-		OptionsMenu.versionShit.text = "Current Scroll Speed: " + OptionsMenu.truncateFloat(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
+		OptionsMenu.versionShit.text = "Current Scroll Speed: " + FlxMath.roundDecimal(FlxG.save.data.scrollSpeed,1) + " - Description - " + description;
 		return true;
 	}
 }
@@ -437,7 +438,7 @@ class RainbowFPSOption extends Option
 	public override function press():Bool
 	{
 		FlxG.save.data.fpsRain = !FlxG.save.data.fpsRain;
-		(cast (Lib.current.getChildAt(0), Main)).changeFPSColor(FlxColor.WHITE);
+		cast(Lib.current.getChildAt(0), Main).changeFPSColor(FlxColor.WHITE);
 		display = updateDisplay();
 		return true;
 	}
@@ -530,7 +531,7 @@ class OffsetMenu extends Option
 		PlayState.storyWeek = 0;
 		PlayState.offsetTesting = true;
 		trace('CUR WEEK' + PlayState.storyWeek);
-		LoadingState.loadAndSwitchState(new PlayState());
+		FlxG.switchState(new PlayState());
 		return false;
 	}
 

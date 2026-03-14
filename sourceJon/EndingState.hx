@@ -5,6 +5,7 @@ import Song.SwagSong;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import lime.system.System;
 
 /**
  * ...
@@ -24,10 +25,10 @@ class EndingState extends FlxState
 		var texty:FlxText;
 		var dialogue:Array<String> = ["thats odd.", "you people weren't meant to pass", "especially you..", " ", "i can see you...."," ","scared you with that one huh?"," ","some day you're gonna forget me.","as for me.","I L L  N E V E R  F O R G E T  Y O U"];
 		texty = new FlxUIText(532,550, 0, "");
-		texty.setFormat("Arial", 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		texty.setFormat(Paths.font("arial.ttf"), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		var neverforget:FlxText;
 		neverforget = new FlxUIText(208,342, 0, "");
-		neverforget.setFormat("Arial",50,FlxColor.WHITE,FlxTextAlign.CENTER,FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		neverforget.setFormat(Paths.font("arial.ttf"),50,FlxColor.WHITE,FlxTextAlign.CENTER,FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		var bobissssssss:FlxSprite = new FlxSprite(0, 0);
 		bobissssssss.frames = Paths.getSparrowAtlas('bob/20215211567');
 		bobissssssss.animation.addByPrefix('idle', 'idle', 24, true);
@@ -117,7 +118,7 @@ class EndingState extends FlxState
 															neverforget.text = "I L L  N E V E R  F O R G E T  Y O U";
 															new FlxTimer().start(3, function(deadTime:FlxTimer)
 															{
-																Sys.exit(0);
+																System.exit(0);
 															});
 														});
 													});

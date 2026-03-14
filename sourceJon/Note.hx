@@ -5,19 +5,12 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-
-#if polymod
-import polymod.format.ParseRules.TargetSignatureElement;
-#end
 
 using StringTools;
 
 class Note extends FlxSprite
 {
 	public var strumTime:Float = 0;
-
 	public var mustPress:Bool = false;
 	public var warning:Bool = false;
 	public var mustHitNotes:Bool = false;
@@ -26,13 +19,9 @@ class Note extends FlxSprite
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
 	public var prevNote:Note;
-
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
-
 	public var noteScore:Float = 1;
-	
-	public var emitter:FlxEmitter = null;
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -48,7 +37,6 @@ class Note extends FlxSprite
 
 		if (prevNote == null)
 			prevNote = this;
-		
 		
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
@@ -82,19 +70,6 @@ class Note extends FlxSprite
 		else if (mustHitNotes)
 		{
 			frames = Paths.getSparrowAtlas('bob/CustomNotes');
-			/*emitter = new FlxEmitter();
-			for (i in 0 ... 10)
-			{
-				var p:FlxParticle = new FlxParticle();
-				p.loadGraphic("bob/notelol", false, 32, 32);
-				// p.animation.add("my-sparkle", [0,1,2,3], 10, true);
-				// p.animation.play("my-sparkle");
-				p.exists = false;
-				emitter.add(p);
-			}
-			add(emitter);
-			emitter.start(false, 1, 0.02);
-			didnt work lol*/
 			
 				animation.addByPrefix('greenScroll', 'hitUp');
 				animation.addByPrefix('redScroll', 'hitRight');
@@ -176,8 +151,6 @@ class Note extends FlxSprite
 				animation.play('redScroll');
 		}
 
-		// trace(prevNote);
-
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
 		// and flip it so it doesn't look weird.
 		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTERS DON'T JUST COMMENT THIS OUT JESUS
@@ -224,7 +197,6 @@ class Note extends FlxSprite
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.8 * FlxG.save.data.scrollSpeed;
 				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
 			}
 		}
 	}
@@ -232,11 +204,7 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		/*if (emitter)
-		{
-			emitter.x = x;
-			emitter.y = y;
-		}*/
+
 		if (mustPress)
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early

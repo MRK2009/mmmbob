@@ -8,16 +8,12 @@ import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
-import flixel.system.FlxSound;
+import flixel.math.FlxMath;
+import flixel.sound.FlxSound;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import io.newgrounds.NG;
 import lime.app.Application;
-
-#if windows
-import Discord.DiscordClient;
-#end
 
 using StringTools;
 
@@ -33,11 +29,7 @@ class MainMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
-	#if !switch
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
-	#else
-	var optionShit:Array<String> = ['story mode', 'freeplay'];
-	#end
 
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
@@ -57,9 +49,9 @@ class MainMenuState extends MusicBeatState
 		{
 			GuyAppears(FlxG.random.int(1, 3));
 		}**/
-		#if windows
+		#if FEATURE_DISCORD
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		Discord.changePresence("In the Menus", null);
 		#end
 
 		if (!FlxG.sound.music.playing)
@@ -125,11 +117,8 @@ class MainMenuState extends MusicBeatState
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + kadeEngineVer + " Kade Engine", 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-
-		// NG.core.calls.event.logEvent('swag').send();
-
 
 		if (FlxG.save.data.dfjk)
 			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
@@ -137,6 +126,12 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
+
+		#if mobile
+		addVPad(UP_DOWN, A_B);
+
+		vPad.y -= 18;
+		#end
 
 		super.create();
 	}
@@ -315,12 +310,8 @@ class MainMenuState extends MusicBeatState
 					str.scale.x = str.scale.x + 0.1;
 				}
 			}
-		curSelected += huh;
 
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
+		curSelected = FlxMath.wrap(curSelected + huh, 0, menuItems.length - 1);
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{

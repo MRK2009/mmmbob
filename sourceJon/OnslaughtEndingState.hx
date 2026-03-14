@@ -5,6 +5,7 @@ import Song.SwagSong;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import lime.system.System;
 
 /**
  * ...
@@ -23,10 +24,10 @@ class OnslaughtEndingState extends FlxState
 		super.create();
 		var texty:FlxText;
 		texty = new FlxUIText(532,550, 0, "");
-		texty.setFormat("Arial", 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		texty.setFormat(Paths.font("arial.ttf"), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		var neverforget:FlxText;
 		neverforget = new FlxUIText(208,342, 0, "");
-		neverforget.setFormat("Arial",20,FlxColor.WHITE,FlxTextAlign.CENTER,FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		neverforget.setFormat(Paths.font("arial.ttf"),20,FlxColor.WHITE,FlxTextAlign.CENTER,FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		neverforget.text = "https://drive.google.com/drive/folders/1ZuEJU_0WlaBBLxWhJ6EPhXLcRL7b1TTn?usp=sharing";
 		FlxG.sound.playMusic(Paths.music("youcantrun"),0);
 		/*add(texty);
@@ -104,7 +105,7 @@ class OnslaughtEndingState extends FlxState
 													add(neverforget);
 													new FlxTimer().start(3, function(deadTime:FlxTimer)
 													{
-														Sys.exit(0);
+														System.exit(0);
 													});
 												});
 											});
