@@ -2,45 +2,50 @@
 	"dependencies": [
 		{
 			"name": "hxcpp",
-			"type": "haxelib"
+			"type": "git",
+			"ref": "master",
+			"url": "https://github.com/HaxeFoundation/hxcpp"
 		},
 		{
 			"name": "lime",
-			"type": "haxelib"
+			"type": "haxelib",
+			"version": "8.1.0"
 		},
 		{
 			"name": "openfl",
-			"type": "haxelib"
+			"type": "haxelib",
+			"version": "9.3.1"
 		},
 		{
 			"name": "flixel",
 			"type": "haxelib"
+			"version": "5.4.1"
 		},
 		{
 			"name": "flixel-addons",
 			"type": "haxelib"
+			"version": "3.2.1"
 		},
 		{
 			"name": "flixel-ui",
 			"type": "haxelib"
-		},
-		{
-			"name": "hscript",
-			"type": "haxelib"
+			"version": "2.5.0"
 		},
 		{
 			"name": "hxdiscord_rpc",
 			"type": "haxelib"
+			"version": "1.2.4"
 		},
 		{
 			"name": "hxvlc",
 			"type": "git",
 			"ref": "main",
-			"url": "https://github.com/MAJigsaw77/hxvlc.git"
+			"url": "https://github.com/MAJigsaw77/hxvlc"
 		},
 		{
 			"name": "extension-androidtools",
 			"type": "haxelib"
+			"version": "2.1.1"
 		}
 	]
 }
