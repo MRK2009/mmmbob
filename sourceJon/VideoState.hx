@@ -44,11 +44,13 @@ class VideoState extends MusicBeatState
 		video.onEndReached.add(function()
 		{
 			video.dispose();
+			FlxG.removeChild(video);
 
 			FlxG.autoPause = true;
 			FlxG.sound.music.volume = fuckingVolume;
 			FlxG.switchState(transClass);
 		});
+		FlxG.addChildBelowMouse(video);
 		if (video.load(Paths.video(leSource)))
             new FlxTimer().start(0.001, (_) -> video.play());
 		#else
