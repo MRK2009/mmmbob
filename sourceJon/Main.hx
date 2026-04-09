@@ -41,6 +41,8 @@ class Main extends Sprite
 	{
 		super();
 
+		hxvlc.util.Handle.init([]);
+
 		#if android
 		Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
 		#elseif (ios || switch)
