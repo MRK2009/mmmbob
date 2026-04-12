@@ -51,7 +51,7 @@ class VideoState extends MusicBeatState
 			FlxG.switchState(transClass);
 		});
 		FlxG.addChildBelowMouse(video);
-		if (video.load(Paths.video(leSource)))
+		if (video.load(leSource))
             new FlxTimer().start(0.001, (_) -> video.play());
 		#else
 		FlxG.autoPause = true;
