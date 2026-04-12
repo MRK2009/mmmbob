@@ -1,5 +1,3 @@
-package;
-
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -23,6 +21,8 @@ class VideoState extends MusicBeatState
 	{
 		super();
 
+		FlxG.autoPause = false;
+
 		fuckingVolume = FlxG.sound.music.volume;
 
 		FlxG.sound.music.volume = 0;
@@ -30,7 +30,7 @@ class VideoState extends MusicBeatState
 		leSource = source;
 		transClass = toTrans;
 	}
-	
+
 	override function create():Void
 	{
 		add(new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK));
@@ -44,6 +44,7 @@ class VideoState extends MusicBeatState
 			video.dispose();
 			FlxG.removeChild(video);
 
+			FlxG.autoPause = true;
 			FlxG.sound.music.volume = fuckingVolume;
 			FlxG.switchState(transClass);
 		});
@@ -51,11 +52,12 @@ class VideoState extends MusicBeatState
 		if (video.load(leSource))
             new FlxTimer().start(0.001, (_) -> video.play());
 		#else
+		FlxG.autoPause = true;
 		FlxG.sound.music.volume = fuckingVolume;
 		FlxG.switchState(transClass);
 		#end
 	}
-	
+
 	#if FEATURE_VIDEOS
 	override function update(elapsed:Float):Void
 	{
