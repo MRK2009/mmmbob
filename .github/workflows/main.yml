@@ -30,7 +30,6 @@ jobs:
           name: windowsBuild
           path: export/release/windows/bin
           if-no-files-found: warn
-
   Android:
     runs-on: ubuntu-latest
     permissions: write-all
