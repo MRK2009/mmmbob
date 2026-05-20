@@ -53,6 +53,7 @@ class VideoState extends MusicBeatState
             new FlxTimer().start(0.001, (_) -> video.play());
 		#else
 		FlxG.autoPause = true;
+		FlxG.sound.music.volume = fuckingVolume;
 		FlxG.switchState(transClass);
 		#end
 	}
