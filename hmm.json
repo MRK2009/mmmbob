@@ -3,8 +3,8 @@
 		{
 			"name": "hxcpp",
 			"type": "git",
-			"ref": "master",
-			"url": "https://github.com/HaxeFoundation/hxcpp"
+			"ref": "funkin",
+			"url": "https://github.com/FunkinCrew/hxcpp"
 		},
 		{
 			"name": "lime",
